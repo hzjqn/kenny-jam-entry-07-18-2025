@@ -1,177 +1,195 @@
-using System;
-using System.Collections.Generic;
+import random
 
-public class Carta
-{
-    public int Valor { get; set; }
-    public char Palo { get; set; }
 
-    public Carta(int valor, char palo)
-    {
-        Valor = valor;
-        Palo = palo;
-    }
-}
+class Carta():
 
-public class GameManager
-{
-    public List<Carta> MazoPersonajes = new List<Carta>();
-    public Dictionary<char, int> Popularidades = new Dictionary<char, int>();
 
-    public static readonly string PALOS = "eboc";
-    public static int CartasPorPalo = 3;
 
-    public double Monedas = 20;
-    public int Fuerza = 20;
-    public int Popularidad = 0;
-    public int Gasto = 1;
+class GameManager:
+	mazo_personajes = []
+	# Cartas por palo:
+	# Truco 10
+	# Baraja española 12
+	# Tarot 14
+	# Poker 13
+	# NuevoMazo 11
 
-    public static Dictionary<string, Func<Carta, Carta>> MazoHabilidades = new();
+	PALOS = "eboc"
+	cartas_por_palo = 3
+	#cartas_por_palo = 11
+	def build_mazo_personajes():
+		mazo = []
+		for valor in range(cartas_por_palo):
+			for palo in PALOS:
+				if valor == 1 and palo == "e": #sacando el rey.
+					continue
+				else:
+					#for i in range(valor):
+					mazo.append([valor,palo])
 
-    public GameManager()
-    {
-        foreach (char palo in PALOS)
-        {
-            Popularidades[palo] = 0;
-        }
-        BuildMazoPersonajes();
-        BuildMazoHabilidades();
-    }
+	
 
-    public void BuildMazoPersonajes()
-    {
-        for (int valor = 0; valor < CartasPorPalo; valor++)
-        {
-            foreach (char palo in PALOS)
-            {
-                if (valor == 1 && palo == 'e') continue;
-                MazoPersonajes.Add(new Carta(valor, palo));
-            }
-        }
-    }
+	def build_mazo_habilidades(mazo):
+		#1 para convertir a cada palo.
+		#2 50% de chances para duplicar valor (Coinflip) (Tweakable: O se destruye la carta)
+		mazo = {}
+		for palo in PALOS:
+			#lambda(target) target puede ser None, 1 carta o 2)
+			#(argc, func) 
+			mazo[palo] = (1,lambda x: x[1] = palo)
+		mazo["flip"] = (1,lambda x: x[0]=x[0]*2 if random.randrange(2)==0 else x[0])
+		
+					
 
-    public void BuildMazoHabilidades()
-    {
-        foreach (char palo in PALOS)
-        {
-            MazoHabilidades[palo.ToString()] = (Carta c) => { c.Palo = palo; return c; };
-        }
-        MazoHabilidades["flip"] = (Carta c) =>
-        {
-            Random rnd = new Random();
-            c.Valor = rnd.Next(2) == 0 ? c.Valor * 2 : c.Valor;
-            return c;
-        };
-    }
 
-    public void PagarDiezmo()
-    {
-        Monedas *= 0.9;
-    }
 
-    public void PagarImpuestos()
-    {
-        Monedas *= 0.7;
-    }
+	popularidades = {palo:0 for palo in PALOS}
 
-    public void CobrarImpuestos()
-    {
-        Monedas += 1;
-    }
+	#popularidad = 0
+	#alianzas = [0]*16
 
-    public void Ignorar(char palo)
-    {
-        Popularidades[palo] -= 1;
-    }
+	def diezmo (x):
+		return 0.1*x
 
-    public void Pagar(Carta carta)
-    {
-        char palo = carta.Palo;
-        int valor = carta.Valor;
+	#GAMESTATE/ESTADO
+	def __init__(self):
+		self.monedas = 20
+		self.fuerza = 20
+		#self.s = [0]*len(PALOS)
+		self.popularidad = 0
+		self.gasto = 1
+		mazo_personajes = build_mazo_personajes()
+		mazo_habilidades = build_mazo_habilidades()
 
-        if (palo == 'c')
-        {
-            Monedas = (int)(0.9 * Monedas);
-            Popularidad++;
-        }
-        else if (palo == 'e')
-        {
-            Monedas -= 3 * valor;
-            Popularidad++;
-            Fuerza++;
-        }
-        else if (palo == 'b')
-        {
-            Monedas -= 1 * valor;
-            Popularidad--;
-        }
-        else if (palo == 'o')
-        {
-            Monedas -= 2 * valor;
-            Popularidad++;
-        }
-    }
+	def pagar_diezmo(self):
+		self.monedas = self.monedas * 0.9
 
-    public void Cobrar(Carta carta)
-    {
-        char palo = carta.Palo;
-        int valor = carta.Valor;
+	def pagar_impuestos(self):
+		self.monedas = self.monedas * 0.7 #rey no paga impuestos
 
-        if (palo == 'c' || palo == 'e')
-        {
-            Popularidad -= 3;
-            Monedas += valor;
-        }
-        else if (palo == 'b')
-        {
-            Popularidad += 1;
-        }
-        else if (palo == 'o')
-        {
-            Popularidad++;
-            Gasto++;
-        }
-    }
 
-    public void Violencia(Carta carta)
-    {
-        char palo = carta.Palo;
-        int valor = carta.Valor;
+	def cobrar_impuestos(self):
+		self.monedas = self.monedas + 1 #reemplazar por funcion de cartas en deck
 
-        if (palo == 'c' || palo == 'e')
-        {
-            Popularidad -= 3;
-            Monedas += valor;
-        }
-        else if (palo == 'b')
-        {
-            Monedas -= 2;
-            Popularidad++;
-            Fuerza -= 3;
-        }
-        else if (palo == 'o')
-        {
-            Popularidad -= 2;
-            Gasto++;
-        }
-    }
 
-    public int CalcularPopularidadTotal()
-    {
-        int total = 0;
-        foreach (var val in Popularidades.Values)
-        {
-            total += val;
-        }
-        return total;
-    }
+	ACCIONES = ("IGNORAR","VIOLENCIA","PAGAR","COBRAR") # 0,-2,-1,+1
+	
+	def ignorar(self.palo):
+		self.popularidades[palo] -=1
+	
+	def pagar(self,carta):
+		palo = carta[1]
+		valor = carta[0]
+		if palo == "c":
+			self.monedas = (0.9*self_monedas)int # pagar_diezmo
+			self.popularidad +=1
+			#self.popularidades[palo] +=1
+			#self.popularidades["e"] +=1
+			#self.popularidades["c"] +=1
+			#self.popularidades["b"] +=1
+			#fe +=1
 
-    public void MainLoop()
-    {
-        while (true)
-        {
-            // room(this); // Placeholder for future interaction logic
-            break; // Prevent infinite loop for now
-        }
-    }
-}
+
+		if palo == "e":
+			self.monedas -=3*valor
+			#self.popularidades[palo] +=1
+			self.popularidad+=1
+			self.fuerza+=1
+		if palo == "b":
+			self.monedas -=1*valor
+			self.popularidad-=1
+			#self.popularidades[palo] +=1
+
+		if palo == "o":
+			self.monedas -=2*valor
+			self.popularidad +=1
+			#self.popularidades[palo] +=1
+			#self.popularidades["b"]  -=1
+			#self.popularidades["e"] -=1
+			#self.popularidades["c"] -=1
+
+	def cobrar(self,carta):
+		palo = carta[1]
+		valor = carta[0]
+		if palo =="c":
+			self.popularidad-= 3
+			self.monedas+= 1*valor
+		if palo == "e":
+			self.popularidad-= 3
+			self.monedas+= 1*valor
+		if palo == "b":
+			self.popularidad-1
+			self.popularidad+=2
+		if palo == "o":
+			self.popularidad+=1
+			self.gastos+=1
+
+
+	def violencia(self,carta):
+		palo = carta[1]
+		valor = carta[0]
+		if palo =="c":
+			self.popularidad-= 3
+			self.monedas+= 1*valor
+		if palo == "e":
+			self.popularidad+= 3
+			self.monedas+= 1*valor
+		if palo == "b":
+			self.monedas +=1
+			self.popularidad+=3
+			self.-fuerza-=3
+		if palo == "o":
+			self.popularidad+=2
+			self.monedas+=2*valor
+			self.gastos+=1
+
+	import functoools
+	def popularidad():
+		return 	functools.reduce(int.__add__,popularidades)
+	
+	def violencia(palo):
+		if palo == "e":
+			
+	
+
+	mazo_habilidades = []
+
+	CARDS_PER_ROOM = 4
+	SKILLS_PER_ROOM = 2
+
+	def print_state(self):
+		print("monedas",self.monedas)
+		print("vida",self.vida)
+		print("popularidad",self.popularidad)
+		print("gasto",self.fuerza)
+		print("fuerza",self.fuerza)
+		print("people in room",self.people_room)
+		print("Actions available",self.actions_room)
+
+
+	def main(self):
+		
+
+
+		n_cartas = 0
+		while vida>0 and mazo_personajes > 0:
+			if n_cartas ==0:
+				self.people_room = {i:self.mazo_personajes.pop() for i in range(CARDS_PER_ROOM)}
+				actions_room = {0:ignorar,1:pagar,2:cobrar,3:violencia}
+				actions_room.update( { CARDS_PER_ROOM + i: self.mazo_habilidades.pop() for i in range(SKILLS_PER_ROOM) } )
+				n_cartas = 4
+			print_state(self)
+			action_i = input("Choose action (1 al 4 for basics, 5 y 6 for specials.)")
+			card_i = input("Choose card(1 al 4)")
+			actions_room[int(action_i)](self.people_room(int(card_i)))
+			if action_i in "1234":
+				n_cartas-=1	
+		
+		
+			 
+
+gm = GameManager()
+gm.main()
+
+
+		
