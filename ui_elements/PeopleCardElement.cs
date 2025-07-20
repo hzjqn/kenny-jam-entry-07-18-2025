@@ -39,6 +39,7 @@ public partial class PeopleCardElement : Node2D
         InitialPosition = GlobalPosition;
         rotationSeed = (float)GD.RandRange(0, 1000) * 10;
         control = GetNode<TextureButton>("Control");
+        control.MouseFilter = Control.MouseFilterEnum.Stop;
 
         if (control != null)
         {
@@ -55,35 +56,34 @@ public partial class PeopleCardElement : Node2D
         shadow.GlobalRotation = Mathf.Sin((Time.GetTicksMsec() + rotationSeed) / 1000.0f) * 0.05f;
         body.GlobalRotation = shadow.GlobalRotation;
 
-        // if (CardManager.selectedCard == card)
-        // {
-        //     GlobalPosition = GetGlobalMousePosition();
-        //     GlobalScale = new (.5f, .5f);
-        //     control.MouseFilter = Control.MouseFilterEnum.Ignore;
-        // }
-        // else
-        // {
-        //     GlobalPosition = InitialPosition;
-        //     GlobalScale = new (1f, 1f);
-        //     control.MouseFilter = Control.MouseFilterEnum.Stop;
+        if (CardManager.selectedCard == card)
+        {
+            GlobalPosition = GetGlobalMousePosition();
+            GlobalScale = new (.5f, .5f);
+            control.MouseFilter = Control.MouseFilterEnum.Ignore;
+        }
+        else
+        {
+            GlobalPosition = InitialPosition;
+            GlobalScale = new (1f, 1f);
+            control.MouseFilter = Control.MouseFilterEnum.Stop;
             
-        // }
+        }
     }
 
     public void OnCardPressed()
     {
-        Console.Write("pressed");
+        GD.Print("pressed");
         Card selectedCard = CardManager.selectedCard;
 
-        if (card != selectedCard && card != null)
+        if (card != selectedCard && selectedCard != null)
         {
             OnCardDropped();
         }  
-        else if (card == null)
+        else if (selectedCard == null)
         {
             CardManager.selectedCard = card;
         }
-
     }
 
     public void OnCardDropped()

@@ -13,7 +13,7 @@ public partial class DeselectTrigger : TextureButton
 
     public void Deselect()
     {
-        Console.Write("Deselected");
+        GD.Print("Deselected");
         CardManager.selectedCard = null;
     }
 }

@@ -177,9 +177,4 @@ offset_top = -24.0
 offset_right = 21.0
 offset_bottom = 16.0
 scale = Vector2(0.934081, 1.15347)
-
-[node name="MarginContainer" type="Panel" parent="Control"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+mouse_filter = 1

@@ -43,7 +43,7 @@ public partial class MessageElement : Node2D
 
     public void TransitionIn()
     {
-        Console.Write("Entered..."+ this.Name);
+        GD.Print("Entered..."+ this.Name);
         animationPlayer.Play("enter");
     }
 

@@ -135,6 +135,7 @@ scale = Vector2(3.78095, 3.84848)
 [node name="CanvasLayer4" type="CanvasLayer" parent="."]
 
 [node name="Deselect" type="TextureButton" parent="CanvasLayer4"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
