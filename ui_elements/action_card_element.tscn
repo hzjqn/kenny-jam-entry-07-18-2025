@@ -1,0 +1,175 @@
+[gd_scene load_steps=12 format=3 uid="uid://dx73g5e8b7ac3"]
+
+[ext_resource type="Script" uid="uid://d2gaimovm1rmv" path="res://ui_elements/PeopleCardElement.cs" id="1_gtscd"]
+[ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="2_3x5y6"]
+[ext_resource type="Texture2D" uid="uid://bqsxyt5rp2tsd" path="res://assets/kenney_board-game-icons/Vector/Icons/sword.svg" id="4_w3gp5"]
+[ext_resource type="Theme" uid="uid://bgwhpeidl07go" path="res://assets/ui_theme.tres" id="5_6y3o6"]
+[ext_resource type="FontFile" uid="uid://ueqhd7o54bwm" path="res://assets/fonts/Daydream.ttf" id="6_gtscd"]
+[ext_resource type="Texture2D" uid="uid://6pgj0lewd0kw" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/crown_b.png" id="6_v2qrk"]
+
+[sub_resource type="Animation" id="Animation_b6nid"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ca84f"]
+resource_name = "appear"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.358333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.358333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m1ql1"]
+resource_name = "hover"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_axnln"]
+resource_name = "hover_out"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ca84f"]
+_data = {
+&"RESET": SubResource("Animation_b6nid"),
+&"appear": SubResource("Animation_ca84f"),
+&"hover": SubResource("Animation_m1ql1"),
+&"hover_out": SubResource("Animation_axnln")
+}
+
+[node name="PeopleCardElement" type="Node2D" node_paths=PackedStringArray("body", "shadow", "animationPlayer")]
+script = ExtResource("1_gtscd")
+body = NodePath("Body")
+shadow = NodePath("Shadow")
+animationPlayer = NodePath("AnimationPlayer")
+rotationSeed = 7200.0
+
+[node name="Shadow" type="Node2D" parent="."]
+rotation = -0.0250365
+scale = Vector2(1.1, 1.1)
+
+[node name="Person" type="Sprite2D" parent="Shadow"]
+modulate = Color(0, 0, 0, 0.458824)
+self_modulate = Color(0.77084, 0.770839, 0.770839, 1)
+texture_filter = 1
+position = Vector2(0, 5)
+texture = ExtResource("2_3x5y6")
+
+[node name="Body" type="Node2D" parent="."]
+rotation = -0.0250365
+scale = Vector2(1.1, 1.1)
+
+[node name="BG" type="Sprite2D" parent="Body"]
+self_modulate = Color(0.99487, 0.844937, 0.434747, 1)
+texture_filter = 1
+texture = ExtResource("2_3x5y6")
+
+[node name="ActionTypeIcon" type="Sprite2D" parent="Body/BG"]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+position = Vector2(-10.8451, -16.755)
+rotation = -0.240245
+scale = Vector2(0.150653, 0.157424)
+texture = ExtResource("6_v2qrk")
+
+[node name="ActionIcon" type="Sprite2D" parent="Body/BG"]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+position = Vector2(-0.0904891, -2.72612)
+rotation = -0.240245
+scale = Vector2(0.343403, 0.358837)
+texture = ExtResource("4_w3gp5")
+
+[node name="ActionName" type="Label" parent="Body/BG"]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+offset_left = -16.5212
+offset_top = 12.5221
+offset_right = 49.4788
+offset_bottom = 35.5221
+scale = Vector2(0.513096, 0.510913)
+theme = ExtResource("5_6y3o6")
+theme_override_fonts/font = ExtResource("6_gtscd")
+text = "Threat"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ca84f")
+}
+autoplay = "hover"
+
+[node name="Control" type="TextureButton" parent="."]
+offset_left = -19.0
+offset_top = -24.0
+offset_right = 21.0
+offset_bottom = 16.0
+scale = Vector2(0.934081, 1.15347)
+
+[node name="MarginContainer" type="Panel" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

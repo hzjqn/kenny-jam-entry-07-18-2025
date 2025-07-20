@@ -1,0 +1,138 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr81rfv17nnkc"]
+
+[ext_resource type="Script" uid="uid://bpmigc7r1ar4g" path="res://ui_elements/TransitionParticles.cs" id="1_qlkrg"]
+[ext_resource type="Texture2D" uid="uid://c6kffxrindmfm" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/exploding.png" id="2_nc7at"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qlkrg"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(68, 48, 1)
+angle_min = 38.5
+angle_max = 217.9
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(16.405, 16.995, 0)
+turbulence_noise_speed_random = 0.67
+turbulence_initial_displacement_min = -90.4
+turbulence_initial_displacement_max = 100.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_qlkrg")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+emitting = false
+amount = 128
+texture = ExtResource("2_nc7at")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.1
+use_fixed_seed = true
+seed = 2097771216
+process_material = SubResource("ParticleProcessMaterial_qlkrg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(-97.7363, -1)
+rotation = -0.362269
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(-87.7363, -43)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(-71.1586, -51.4224)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(-32.1586, -65.4224)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(9.84137, -67.4224)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(50.8414, -59.4224)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(85.8414, -47.4224)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(100.264, -30)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(99.2637, 17)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(92.2637, 44)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(69.2638, 70)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D12" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(22.2638, 69)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D13" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(-22.7363, 70)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D14" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(-66.7363, 62)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")
+
+[node name="Sprite2D15" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+texture_filter = 1
+position = Vector2(-95.7363, 26)
+rotation = 0.439707
+texture = ExtResource("2_nc7at")

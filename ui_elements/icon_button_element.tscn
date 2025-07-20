@@ -1,0 +1,150 @@
+[gd_scene load_steps=10 format=3 uid="uid://cb8usqijv0eu1"]
+
+[ext_resource type="Script" uid="uid://vspclsj7cef7" path="res://ui_elements/IconButtonElement.cs" id="1_djbyg"]
+[ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="1_fkvsm"]
+[ext_resource type="Texture2D" uid="uid://bkf8vvir2i8o6" path="res://assets/kenney_board-game-icons/Vector/Icons/tag_empty.svg" id="2_l0p8d"]
+[ext_resource type="Texture2D" uid="uid://d0uq3vmeic7tg" path="res://assets/kenney_board-game-icons/Vector/Icons/cards_take.svg" id="2_xt77u"]
+
+[sub_resource type="Animation" id="Animation_b6nid"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ca84f"]
+resource_name = "appear"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.358333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.358333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m1ql1"]
+resource_name = "hover"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_axnln"]
+resource_name = "hover_out"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ca84f"]
+_data = {
+&"RESET": SubResource("Animation_b6nid"),
+&"appear": SubResource("Animation_ca84f"),
+&"hover": SubResource("Animation_m1ql1"),
+&"hover_out": SubResource("Animation_axnln")
+}
+
+[node name="IconButtonElement" type="Node2D" node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("1_djbyg")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Shadow" type="Node2D" parent="."]
+scale = Vector2(1.1, 1.1)
+
+[node name="Shadow" type="Sprite2D" parent="Shadow"]
+modulate = Color(0, 0, 0, 0.458824)
+self_modulate = Color(0.77084, 0.770839, 0.770839, 1)
+texture_filter = 1
+position = Vector2(0, 3)
+rotation = 3.14159
+scale = Vector2(1.2, 1)
+texture = ExtResource("1_fkvsm")
+
+[node name="Body" type="Node2D" parent="."]
+scale = Vector2(1.1, 1.1)
+
+[node name="Body" type="Sprite2D" parent="Body"]
+self_modulate = Color(0.341076, 0.854689, 0.913858, 1)
+texture_filter = 1
+rotation = 3.14159
+scale = Vector2(1.00001, 0.871794)
+texture = ExtResource("1_fkvsm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body/Body"]
+scale = Vector2(1.21429, 1.3568)
+texture = ExtResource("2_l0p8d")
+
+[node name="Icon" type="Sprite2D" parent="Body/Body/Sprite2D"]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+rotation = 0.523598
+scale = Vector2(0.327393, -0.361899)
+texture = ExtResource("2_xt77u")
+
+[node name="Control" type="TextureButton" parent="."]
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 25.0
+offset_bottom = 25.0
+scale = Vector2(0.774081, 0.753475)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ca84f")
+}
+autoplay = "hover"

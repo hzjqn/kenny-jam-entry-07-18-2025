@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://clb2vl253j7oh"]
+
+[ext_resource type="Script" uid="uid://3s3n6y1kur4" path="res://scenes/MainMenu.cs" id="1_l6cm7"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-69, -99)
+script = ExtResource("1_l6cm7")

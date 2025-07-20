@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciejssis6a7x5"]
+
+[ext_resource type="PackedScene" uid="uid://cr81rfv17nnkc" path="res://ui_elements/transition_particles.tscn" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://dgc5xweupw2rt" path="res://ui_elements/background.tscn" id="1_2c62f"]
+[ext_resource type="PackedScene" uid="uid://bjv7q1ta7qqcv" path="res://scenes/court_scene.tscn" id="3_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://b7s3ytvmfy7m0" path="res://ui_elements/ui_elements.tscn" id="4_d5x1h"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainCamera" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" parent="CanvasLayer2" instance=ExtResource("1_2c62f")]
+position = Vector2(298, 241)
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="CourtScene" parent="CanvasLayer3" instance=ExtResource("3_d5x1h")]
+position = Vector2(253, 129)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="CanvasLayer" instance=ExtResource("1_0f027")]
+position = Vector2(324, 236)
+scale = Vector2(3.78095, 3.84848)
+
+[node name="CanvasLayer4" type="CanvasLayer" parent="."]
+
+[node name="UIElements" parent="CanvasLayer4" instance=ExtResource("4_d5x1h")]
+position = Vector2(256, 124)

@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7s3ytvmfy7m0"]
+
+[ext_resource type="PackedScene" uid="uid://q1coc23s5d6f" path="res://ui_elements/card_element.tscn" id="1_annl5"]
+[ext_resource type="PackedScene" uid="uid://cb8usqijv0eu1" path="res://ui_elements/icon_button_element.tscn" id="2_70nn0"]
+[ext_resource type="PackedScene" uid="uid://dm3txtsrwmapt" path="res://ui_elements/dark_emisary_card_element.tscn" id="3_ndxy5"]
+[ext_resource type="PackedScene" uid="uid://tw38xd6swqcj" path="res://ui_elements/player_card_element.tscn" id="4_abews"]
+[ext_resource type="PackedScene" uid="uid://dx73g5e8b7ac3" path="res://ui_elements/action_card_element.tscn" id="5_020fs"]
+
+[node name="UIElements" type="Node2D"]
+
+[node name="CardElement" parent="." instance=ExtResource("1_annl5")]
+position = Vector2(119, 20)
+rotation = 0.150947
+rotationSeed = 1550.0
+
+[node name="CardElement2" parent="." instance=ExtResource("1_annl5")]
+position = Vector2(96, 65)
+rotation = 0.150947
+rotationSeed = 5210.0
+
+[node name="CardElement3" parent="." instance=ExtResource("1_annl5")]
+position = Vector2(141, 65)
+rotation = 0.150947
+rotationSeed = 3220.0
+
+[node name="CardElement4" parent="." instance=ExtResource("1_annl5")]
+position = Vector2(119, 106)
+rotation = 0.150947
+rotationSeed = 6720.0
+
+[node name="CardElement5" parent="." instance=ExtResource("2_70nn0")]
+position = Vector2(62, -24)
+rotation = 0.150947
+scale = Vector2(0.647259, 0.600743)
+
+[node name="PeopleCardElement2" parent="." instance=ExtResource("3_ndxy5")]
+position = Vector2(-40, 40)
+rotationSeed = 5920.0
+
+[node name="PeopleCardElement" parent="." instance=ExtResource("4_abews")]
+position = Vector2(-42, 99)
+rotationSeed = 6290.0
+
+[node name="PeopleCardElement3" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-81, 157)
+rotationSeed = 2490.0
+
+[node name="PeopleCardElement4" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-40, 157)
+rotationSeed = 1470.0
+
+[node name="PeopleCardElement5" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(1, 157)
+rotationSeed = 7650.0
+
+[node name="PeopleCardElement6" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(42, 157)
+rotationSeed = 9780.0
+
+[node name="PeopleCardElement7" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-83, -19)
+rotationSeed = 1770.0
+
+[node name="PeopleCardElement8" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-39, -20)
+rotationSeed = 1610.0

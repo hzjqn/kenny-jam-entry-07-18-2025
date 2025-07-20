@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgc5xweupw2rt"]
+
+[ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="1_7gf0y"]
+
+[node name="Sprite2D" type="Sprite2D"]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+rotation = 3.14159
+scale = Vector2(24.7754, 15.2261)
+texture = ExtResource("1_7gf0y")
