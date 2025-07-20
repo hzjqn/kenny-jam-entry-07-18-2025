@@ -22,7 +22,7 @@ class GameManager:
 					#continue
 				#else:
 					#for i in range(valor):
-				mazo.append([valor,palo])
+				mazo.append([valor+2,palo])
 		return mazo
 	
 
@@ -183,7 +183,9 @@ class GameManager:
 
 
 		n_cartas = 0
+		#main loop
 		while self.fuerza>0 and len(self.mazo_personajes)+ n_cartas>0:
+			self.monedas-=self.gasto
 			if n_cartas ==0:
 				n_cartas = 4
 				self.people_room = {i:self.robar_personaje() for i in range(GameManager.CARDS_PER_ROOM)}
