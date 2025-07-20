@@ -8,13 +8,6 @@ public class Run
     public int Fuerza = 20;
     public int Popularidad = 0;
     public int Gasto = 1;
-
-
-    public Run()
-    {
-        
-    }
-
     
     public void PagarDiezmo()
     {

@@ -110,7 +110,7 @@ animationPlayer = NodePath("AnimationPlayer")
 rotationSeed = 8500.0
 
 [node name="Shadow" type="Node2D" parent="."]
-rotation = 0.0486502
+rotation = 0.0416461
 scale = Vector2(1.1, 1.1)
 
 [node name="Person" type="Sprite2D" parent="Shadow"]
@@ -135,7 +135,7 @@ position = Vector2(0, 5)
 texture = ExtResource("1_8dg7b")
 
 [node name="Body" type="Node2D" parent="."]
-rotation = 0.0486502
+rotation = 0.0416461
 scale = Vector2(1.1, 1.1)
 
 [node name="Person" type="Sprite2D" parent="Body"]

@@ -1,0 +1,244 @@
+[gd_scene load_steps=16 format=3 uid="uid://s8odqjymkr0w"]
+
+[ext_resource type="Script" uid="uid://clfbg35qyo0hn" path="res://ui_elements/MessageElement.cs" id="1_6mrdh"]
+[ext_resource type="Texture2D" uid="uid://cdl3lbhm0afoy" path="res://assets/kenney_emotes-pack/PNG/Vector/Style 5/emote__.png" id="1_dbyn0"]
+[ext_resource type="Script" uid="uid://vspclsj7cef7" path="res://ui_elements/IconButtonElement.cs" id="2_6mrdh"]
+[ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="3_unml6"]
+[ext_resource type="Texture2D" uid="uid://bkf8vvir2i8o6" path="res://assets/kenney_board-game-icons/Vector/Icons/tag_empty.svg" id="4_w788c"]
+[ext_resource type="Theme" uid="uid://bgwhpeidl07go" path="res://assets/ui_theme.tres" id="5_wicnq"]
+
+[sub_resource type="Animation" id="Animation_b6nid"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ca84f"]
+resource_name = "appear"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.358333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.358333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m1ql1"]
+resource_name = "hover"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_axnln"]
+resource_name = "hover_out"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ca84f"]
+_data = {
+&"RESET": SubResource("Animation_b6nid"),
+&"appear": SubResource("Animation_ca84f"),
+&"hover": SubResource("Animation_m1ql1"),
+&"hover_out": SubResource("Animation_axnln")
+}
+
+[sub_resource type="Animation" id="Animation_6mrdh"]
+resource_name = "enter"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_unml6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w788c"]
+resource_name = "exit"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w788c"]
+_data = {
+&"RESET": SubResource("Animation_unml6"),
+&"enter": SubResource("Animation_6mrdh"),
+&"exit": SubResource("Animation_w788c")
+}
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("okButton", "animationPlayer")]
+scale = Vector2(1e-05, 1e-05)
+script = ExtResource("1_6mrdh")
+okButton = NodePath("IconButtonElement/Control")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, -25)
+scale = Vector2(4.54115, 2.53279)
+texture = ExtResource("1_dbyn0")
+
+[node name="IconButtonElement" type="Node2D" parent="." node_paths=PackedStringArray("animationPlayer")]
+position = Vector2(83, -12)
+scale = Vector2(0.969623, 0.839149)
+script = ExtResource("2_6mrdh")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Shadow" type="Node2D" parent="IconButtonElement"]
+scale = Vector2(1.1, 1.1)
+
+[node name="Shadow" type="Sprite2D" parent="IconButtonElement/Shadow"]
+modulate = Color(0, 0, 0, 0.458824)
+self_modulate = Color(0.77084, 0.770839, 0.770839, 1)
+texture_filter = 1
+position = Vector2(0, 3)
+rotation = 3.14159
+scale = Vector2(1.2, 1)
+texture = ExtResource("3_unml6")
+
+[node name="Body" type="Node2D" parent="IconButtonElement"]
+scale = Vector2(1.09524, 1.1)
+
+[node name="Body" type="Sprite2D" parent="IconButtonElement/Body"]
+self_modulate = Color(2.88785e-06, 0.913232, 0.572482, 1)
+texture_filter = 1
+rotation = 3.14159
+scale = Vector2(1.00001, 0.871794)
+texture = ExtResource("3_unml6")
+
+[node name="Sprite2D" type="Sprite2D" parent="IconButtonElement/Body/Body"]
+scale = Vector2(1.21429, 1.3568)
+texture = ExtResource("4_w788c")
+
+[node name="Icon" type="Sprite2D" parent="IconButtonElement/Body/Body/Sprite2D"]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+position = Vector2(-3.74327, 2.30567)
+rotation = 0.523598
+scale = Vector2(0.12349, -0.361899)
+texture = ExtResource("3_unml6")
+
+[node name="Icon2" type="Sprite2D" parent="IconButtonElement/Body/Body/Sprite2D"]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+position = Vector2(2.24596, -1.53711)
+rotation = -1.0472
+scale = Vector2(-0.175892, -0.219126)
+texture = ExtResource("3_unml6")
+
+[node name="Control" type="TextureButton" parent="IconButtonElement"]
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 25.0
+offset_bottom = 25.0
+scale = Vector2(0.774081, 0.753475)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IconButtonElement"]
+libraries = {
+&"": SubResource("AnimationLibrary_ca84f")
+}
+autoplay = "hover"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0.247059, 0.14902, 0.192157, 1)
+offset_left = -56.0
+offset_top = -55.0
+offset_right = 136.0
+offset_bottom = 19.0
+scale = Vector2(0.60114, 0.684734)
+theme = ExtResource("5_wicnq")
+text = "This is you. You have 4 basic actions each day to exercise your power."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w788c")
+}

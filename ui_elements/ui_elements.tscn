@@ -11,22 +11,22 @@
 [node name="CardElement" parent="." instance=ExtResource("1_annl5")]
 position = Vector2(119, 20)
 rotation = 0.150947
-rotationSeed = 1550.0
+rotationSeed = 8900.0
 
 [node name="CardElement2" parent="." instance=ExtResource("1_annl5")]
 position = Vector2(96, 65)
 rotation = 0.150947
-rotationSeed = 5210.0
+rotationSeed = 5890.0
 
 [node name="CardElement3" parent="." instance=ExtResource("1_annl5")]
 position = Vector2(141, 65)
 rotation = 0.150947
-rotationSeed = 3220.0
+rotationSeed = 7190.0
 
 [node name="CardElement4" parent="." instance=ExtResource("1_annl5")]
 position = Vector2(119, 106)
 rotation = 0.150947
-rotationSeed = 6720.0
+rotationSeed = 6630.0
 
 [node name="CardElement5" parent="." instance=ExtResource("2_70nn0")]
 position = Vector2(62, -24)
@@ -35,32 +35,32 @@ scale = Vector2(0.647259, 0.600743)
 
 [node name="PeopleCardElement2" parent="." instance=ExtResource("3_ndxy5")]
 position = Vector2(-40, 40)
-rotationSeed = 5920.0
+rotationSeed = 4740.0
 
 [node name="PeopleCardElement" parent="." instance=ExtResource("4_abews")]
 position = Vector2(-42, 99)
-rotationSeed = 6290.0
+rotationSeed = 1500.0
 
 [node name="PeopleCardElement3" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(-81, 157)
-rotationSeed = 2490.0
+rotationSeed = 500.0
 
 [node name="PeopleCardElement4" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(-40, 157)
-rotationSeed = 1470.0
+rotationSeed = 8820.0
 
 [node name="PeopleCardElement5" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(1, 157)
-rotationSeed = 7650.0
+rotationSeed = 7140.0
 
 [node name="PeopleCardElement6" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(42, 157)
-rotationSeed = 9780.0
+rotationSeed = 4920.0
 
 [node name="PeopleCardElement7" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(-83, -19)
-rotationSeed = 1770.0
+rotationSeed = 1220.0
 
 [node name="PeopleCardElement8" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(-39, -20)
-rotationSeed = 1610.0
+rotationSeed = 9760.0
