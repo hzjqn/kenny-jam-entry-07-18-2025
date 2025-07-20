@@ -7,6 +7,10 @@ public partial class MessageElement : Node2D
     public bool isFirstMessage = false;
     
     [Export]
+    public bool isLastMessage = false;
+
+    
+    [Export]
     public TextureButton okButton;
 
     [Export]
@@ -50,6 +54,10 @@ public partial class MessageElement : Node2D
 
     public void OnAnimationFinished(StringName animName)
     {
+        if (isLastMessage)
+        {
+            GameManager.isOnTutorial = false;
+        }
         if (animName == "exit")
         {
             QueueFree(); // Remove this message element from the scene

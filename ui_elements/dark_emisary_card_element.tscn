@@ -1,11 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://dm3txtsrwmapt"]
+[gd_scene load_steps=14 format=3 uid="uid://dm3txtsrwmapt"]
 
 [ext_resource type="Script" uid="uid://d2gaimovm1rmv" path="res://ui_elements/PeopleCardElement.cs" id="1_hxule"]
 [ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="2_hh7ke"]
+[ext_resource type="Script" uid="uid://dbqbnxhj6bhhs" path="res://resources/Card.cs" id="2_hxule"]
 [ext_resource type="Texture2D" uid="uid://b01cnpasf7c88" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0087.png" id="3_tfs7f"]
 [ext_resource type="Texture2D" uid="uid://b67fmraduk11p" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0111.png" id="4_hxule"]
 [ext_resource type="Texture2D" uid="uid://coqechn2p2477" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/tag_d6.png" id="5_4oawf"]
 [ext_resource type="Texture2D" uid="uid://cor8vogvcefak" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/cards_skull.png" id="6_fi0r1"]
+
+[sub_resource type="Resource" id="Resource_hh7ke"]
+resource_local_to_scene = true
+script = ExtResource("2_hxule")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
 
 [sub_resource type="Animation" id="Animation_b6nid"]
 length = 0.001
@@ -104,13 +113,13 @@ _data = {
 
 [node name="PeopleCardElement" type="Node2D" node_paths=PackedStringArray("body", "shadow", "animationPlayer")]
 script = ExtResource("1_hxule")
-body = NodePath("Body")
-shadow = NodePath("Shadow")
+card = SubResource("Resource_hh7ke")
+body = NodePath("Shadow")
+shadow = NodePath("Body")
 animationPlayer = NodePath("AnimationPlayer")
-rotationSeed = 9210.0
 
 [node name="Shadow" type="Node2D" parent="."]
-rotation = -0.00671695
+rotation = -0.0489283
 scale = Vector2(1.1, 1.1)
 
 [node name="Person" type="Sprite2D" parent="Shadow"]
@@ -135,7 +144,7 @@ position = Vector2(0, 5)
 texture = ExtResource("2_hh7ke")
 
 [node name="Body" type="Node2D" parent="."]
-rotation = -0.00671695
+rotation = -0.0489283
 scale = Vector2(1.1, 1.1)
 
 [node name="Person" type="Sprite2D" parent="Body"]

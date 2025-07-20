@@ -1,11 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://ciejssis6a7x5"]
+[gd_scene load_steps=15 format=3 uid="uid://ciejssis6a7x5"]
 
 [ext_resource type="PackedScene" uid="uid://cr81rfv17nnkc" path="res://ui_elements/transition_particles.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://dgc5xweupw2rt" path="res://ui_elements/background.tscn" id="1_2c62f"]
 [ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="2_gyfs4"]
 [ext_resource type="PackedScene" uid="uid://bjv7q1ta7qqcv" path="res://scenes/court_scene.tscn" id="3_d5x1h"]
+[ext_resource type="Script" uid="uid://cc2kg0k4jiyoy" path="res://ui_elements/DeselectTrigger.cs" id="4_7ycvg"]
 [ext_resource type="PackedScene" uid="uid://b7s3ytvmfy7m0" path="res://ui_elements/ui_elements.tscn" id="4_d5x1h"]
+[ext_resource type="Script" uid="uid://cb8gfv7a2s82w" path="res://Tutorial.cs" id="5_66tet"]
 [ext_resource type="PackedScene" uid="uid://s8odqjymkr0w" path="res://ui_elements/message_element.tscn" id="6_hq1ik"]
+[ext_resource type="Script" uid="uid://dgplc31kla1yl" path="res://debug/DebugLabel.cs" id="7_nfk4m"]
 
 [sub_resource type="Animation" id="Animation_b6nid"]
 length = 0.001
@@ -131,6 +134,14 @@ scale = Vector2(3.78095, 3.84848)
 
 [node name="CanvasLayer4" type="CanvasLayer" parent="."]
 
+[node name="Deselect" type="TextureButton" parent="CanvasLayer4"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_7ycvg")
+
 [node name="UIElements" parent="CanvasLayer4" instance=ExtResource("4_d5x1h")]
 position = Vector2(256, 124)
 
@@ -141,6 +152,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_66tet")
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer4/Tutorial"]
 layout_mode = 1
@@ -255,6 +267,7 @@ text = "They all react different to your actions, try to understand their wants 
 
 [node name="IntroMessage9" parent="CanvasLayer4/Tutorial" instance=ExtResource("6_hq1ik")]
 position = Vector2(339, 169)
+isLastMessage = true
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage9/IconButtonElement" index="3"]
 libraries = {
@@ -263,6 +276,17 @@ libraries = {
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage9" index="2"]
 text = "And you'll rule forever..."
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Label" type="RichTextLabel" parent="Debug"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_nfk4m")
 
 [editable path="CanvasLayer4/Tutorial/IntroMessage1"]
 [editable path="CanvasLayer4/Tutorial/IntroMessage2"]

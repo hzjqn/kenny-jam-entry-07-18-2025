@@ -24,9 +24,9 @@ public class Run
         Monedas += 1;
     }
 
-    public void Ignorar(CardSuits palo)
+    public void Ignorar(Card target)
     {
-        Popularidades[palo] -= 1;
+        Popularidades[target.cardSuit] -= 1;
     }
 
     public void Pagar(Card Card)
@@ -109,6 +109,74 @@ public class Run
             total += val;
         }
         return total;
+    }
+
+    public void UseAction(Card card, Card target)
+    {
+        switch (card.cardType)
+        {
+            case CardType.BasicAction:
+                UseBasicAction(card, target);
+                break;
+
+            case CardType.SpecialAction:
+                UseSpecialAction(card, target);
+                break;
+        }
+    }
+
+    public void UseSpecialAction(Card card, Card target)
+    {
+         switch (card.value)
+        {
+            case (int)SpecialActionTypes.Flip:
+                FlipCard(target);
+                break;
+            case (int)SpecialActionTypes.Convert:
+                ConvertCard(target, card.cardSuit);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public static void FlipCard(Card target)
+    {
+        Random rnd = new Random();
+        target.value = rnd.Next(2) == 0 ? target.value * 2 : target.value;
+    }
+
+    public static void ConvertCard(Card target, CardSuits newSuit)
+    {
+        target.cardSuit = newSuit;
+    }
+
+    public void UseBasicAction(Card card, Card target)
+    {
+        if (card.cardType != CardType.BasicAction) return;
+        switch (card.value)
+        {
+            case (int)BasicActionTypes.Tax:
+                {
+                    Cobrar(target);
+                    break;
+                }
+            case (int)BasicActionTypes.Bribe:
+                {
+                    Pagar(target);
+                    break;
+                }
+            case (int)BasicActionTypes.Threat:
+                {
+                    Violencia(target);
+                    break;
+                }
+            case (int)BasicActionTypes.Ignore:
+                {
+                    Ignorar(target);
+                    break;
+                }
+        }
     }
 
     public void MainLoop()

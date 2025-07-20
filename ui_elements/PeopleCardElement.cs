@@ -1,9 +1,10 @@
 using Godot;
 using System;
 
-[Tool]
 public partial class PeopleCardElement : Node2D
 {
+    [Export]
+    Card card;
 
     [Export]
     Node2D body;
@@ -28,13 +29,20 @@ public partial class PeopleCardElement : Node2D
 
     float rotationSeed = 0;
 
+    TextureButton control;
+
+    Vector2 InitialPosition;
+
 
     public override void _Ready()
     {
+        InitialPosition = GlobalPosition;
         rotationSeed = (float)GD.RandRange(0, 1000) * 10;
-        TextureButton control = GetNode<TextureButton>("Control");
+        control = GetNode<TextureButton>("Control");
+
         if (control != null)
         {
+            control.Pressed += OnCardPressed;
             control.MouseEntered += AniamteHover;
             control.MouseExited += AniamteHoverOut;
         }
@@ -46,17 +54,57 @@ public partial class PeopleCardElement : Node2D
 
         shadow.GlobalRotation = Mathf.Sin((Time.GetTicksMsec() + rotationSeed) / 1000.0f) * 0.05f;
         body.GlobalRotation = shadow.GlobalRotation;
+
+        // if (CardManager.selectedCard == card)
+        // {
+        //     GlobalPosition = GetGlobalMousePosition();
+        //     GlobalScale = new (.5f, .5f);
+        //     control.MouseFilter = Control.MouseFilterEnum.Ignore;
+        // }
+        // else
+        // {
+        //     GlobalPosition = InitialPosition;
+        //     GlobalScale = new (1f, 1f);
+        //     control.MouseFilter = Control.MouseFilterEnum.Stop;
+            
+        // }
+    }
+
+    public void OnCardPressed()
+    {
+        Console.Write("pressed");
+        Card selectedCard = CardManager.selectedCard;
+
+        if (card != selectedCard && card != null)
+        {
+            OnCardDropped();
+        }  
+        else if (card == null)
+        {
+            CardManager.selectedCard = card;
+        }
+
+    }
+
+    public void OnCardDropped()
+    {
+        if (CardManager.selectedCard != card) return;
+
+        CardManager.useSelectedCardOnHoveredCard();
     }
 
     public void AniamteHover()
     {
-        GD.Print("Hover");
+        CardManager.hoveredCard = card;
         animationPlayer.Play("hover");
     }
 
     public void AniamteHoverOut()
     {
-        GD.Print("Hover out");
+        if (CardManager.hoveredCard == card)
+        {
+            CardManager.hoveredCard = null;
+        }
         animationPlayer.Play("hover_out");
     }
 }

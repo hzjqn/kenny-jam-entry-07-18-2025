@@ -1,11 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx73g5e8b7ac3"]
+[gd_scene load_steps=14 format=3 uid="uid://dx73g5e8b7ac3"]
 
 [ext_resource type="Script" uid="uid://d2gaimovm1rmv" path="res://ui_elements/PeopleCardElement.cs" id="1_gtscd"]
 [ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="2_3x5y6"]
+[ext_resource type="Script" uid="uid://dbqbnxhj6bhhs" path="res://resources/Card.cs" id="2_cr71t"]
 [ext_resource type="Texture2D" uid="uid://bqsxyt5rp2tsd" path="res://assets/kenney_board-game-icons/Vector/Icons/sword.svg" id="4_w3gp5"]
 [ext_resource type="Theme" uid="uid://bgwhpeidl07go" path="res://assets/ui_theme.tres" id="5_6y3o6"]
 [ext_resource type="FontFile" uid="uid://ueqhd7o54bwm" path="res://assets/fonts/Daydream.ttf" id="6_gtscd"]
 [ext_resource type="Texture2D" uid="uid://6pgj0lewd0kw" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/crown_b.png" id="6_v2qrk"]
+
+[sub_resource type="Resource" id="Resource_r4666"]
+resource_local_to_scene = true
+script = ExtResource("2_cr71t")
+cardType = 2
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
 
 [sub_resource type="Animation" id="Animation_b6nid"]
 length = 0.001
@@ -102,15 +111,16 @@ _data = {
 &"hover_out": SubResource("Animation_axnln")
 }
 
-[node name="PeopleCardElement" type="Node2D" node_paths=PackedStringArray("body", "shadow", "animationPlayer")]
+[node name="PeopleCardElement" type="Node2D" node_paths=PackedStringArray("body", "shadow", "rulesLabel", "animationPlayer")]
 script = ExtResource("1_gtscd")
+card = SubResource("Resource_r4666")
 body = NodePath("Body")
 shadow = NodePath("Shadow")
+rulesLabel = NodePath("Body/BG/ActionName")
 animationPlayer = NodePath("AnimationPlayer")
-rotationSeed = 7200.0
 
 [node name="Shadow" type="Node2D" parent="."]
-rotation = 0.0319965
+rotation = -0.0495653
 scale = Vector2(1.1, 1.1)
 
 [node name="Person" type="Sprite2D" parent="Shadow"]
@@ -121,7 +131,7 @@ position = Vector2(0, 5)
 texture = ExtResource("2_3x5y6")
 
 [node name="Body" type="Node2D" parent="."]
-rotation = 0.0319965
+rotation = -0.0495653
 scale = Vector2(1.1, 1.1)
 
 [node name="BG" type="Sprite2D" parent="Body"]

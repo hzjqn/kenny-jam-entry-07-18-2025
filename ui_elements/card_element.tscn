@@ -1,11 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://q1coc23s5d6f"]
+[gd_scene load_steps=14 format=3 uid="uid://q1coc23s5d6f"]
 
 [ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="1_8dg7b"]
 [ext_resource type="Script" uid="uid://d2gaimovm1rmv" path="res://ui_elements/PeopleCardElement.cs" id="1_m1ql1"]
+[ext_resource type="Script" uid="uid://dbqbnxhj6bhhs" path="res://resources/Card.cs" id="2_b6nid"]
 [ext_resource type="Texture2D" uid="uid://coqechn2p2477" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/tag_d6.png" id="3_8dg7b"]
 [ext_resource type="Texture2D" uid="uid://b01cnpasf7c88" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0087.png" id="3_m1ql1"]
 [ext_resource type="Theme" uid="uid://bgwhpeidl07go" path="res://assets/ui_theme.tres" id="4_ca84f"]
 [ext_resource type="Texture2D" uid="uid://bht2ird3i8g8c" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0106.png" id="5_8dg7b"]
+
+[sub_resource type="Resource" id="Resource_ca84f"]
+resource_local_to_scene = true
+script = ExtResource("2_b6nid")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
 
 [sub_resource type="Animation" id="Animation_b6nid"]
 length = 0.001
@@ -104,10 +113,10 @@ _data = {
 
 [node name="PeopleCardElement" type="Node2D" node_paths=PackedStringArray("body", "shadow", "animationPlayer")]
 script = ExtResource("1_m1ql1")
+card = SubResource("Resource_ca84f")
 body = NodePath("Body")
 shadow = NodePath("Shadow")
 animationPlayer = NodePath("AnimationPlayer")
-rotationSeed = 8500.0
 
 [node name="Shadow" type="Node2D" parent="."]
 rotation = 0.0416461

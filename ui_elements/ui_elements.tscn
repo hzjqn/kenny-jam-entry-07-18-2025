@@ -1,32 +1,129 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7s3ytvmfy7m0"]
+[gd_scene load_steps=19 format=3 uid="uid://b7s3ytvmfy7m0"]
 
 [ext_resource type="PackedScene" uid="uid://q1coc23s5d6f" path="res://ui_elements/card_element.tscn" id="1_annl5"]
 [ext_resource type="PackedScene" uid="uid://cb8usqijv0eu1" path="res://ui_elements/icon_button_element.tscn" id="2_70nn0"]
 [ext_resource type="PackedScene" uid="uid://dm3txtsrwmapt" path="res://ui_elements/dark_emisary_card_element.tscn" id="3_ndxy5"]
 [ext_resource type="PackedScene" uid="uid://tw38xd6swqcj" path="res://ui_elements/player_card_element.tscn" id="4_abews"]
 [ext_resource type="PackedScene" uid="uid://dx73g5e8b7ac3" path="res://ui_elements/action_card_element.tscn" id="5_020fs"]
+[ext_resource type="Script" uid="uid://dbqbnxhj6bhhs" path="res://resources/Card.cs" id="6_70nn0"]
+
+[sub_resource type="Resource" id="Resource_70nn0"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_7fd1g"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_tiyoh"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_ne6n7"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_fqxkj"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_f07ri"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_ndxy5"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_abews"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_020fs"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_oah3d"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_qgpxw"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
+
+[sub_resource type="Resource" id="Resource_k7p1x"]
+resource_local_to_scene = true
+script = ExtResource("6_70nn0")
+cardType = 0
+cardSuit = 0
+value = 2
+metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
 
 [node name="UIElements" type="Node2D"]
 
 [node name="CardElement" parent="." instance=ExtResource("1_annl5")]
 position = Vector2(119, 20)
 rotation = 0.150947
-rotationSeed = 8900.0
+card = SubResource("Resource_70nn0")
 
 [node name="CardElement2" parent="." instance=ExtResource("1_annl5")]
 position = Vector2(96, 65)
 rotation = 0.150947
-rotationSeed = 5890.0
+card = SubResource("Resource_7fd1g")
 
 [node name="CardElement3" parent="." instance=ExtResource("1_annl5")]
 position = Vector2(141, 65)
 rotation = 0.150947
-rotationSeed = 7190.0
+card = SubResource("Resource_tiyoh")
 
 [node name="CardElement4" parent="." instance=ExtResource("1_annl5")]
 position = Vector2(119, 106)
 rotation = 0.150947
-rotationSeed = 6630.0
+card = SubResource("Resource_ne6n7")
 
 [node name="CardElement5" parent="." instance=ExtResource("2_70nn0")]
 position = Vector2(62, -24)
@@ -35,32 +132,32 @@ scale = Vector2(0.647259, 0.600743)
 
 [node name="PeopleCardElement2" parent="." instance=ExtResource("3_ndxy5")]
 position = Vector2(-40, 40)
-rotationSeed = 4740.0
+card = SubResource("Resource_fqxkj")
 
 [node name="PeopleCardElement" parent="." instance=ExtResource("4_abews")]
 position = Vector2(-42, 99)
-rotationSeed = 1500.0
+card = SubResource("Resource_f07ri")
 
 [node name="PeopleCardElement3" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(-81, 157)
-rotationSeed = 500.0
+card = SubResource("Resource_ndxy5")
 
 [node name="PeopleCardElement4" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(-40, 157)
-rotationSeed = 8820.0
+card = SubResource("Resource_abews")
 
 [node name="PeopleCardElement5" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(1, 157)
-rotationSeed = 7140.0
+card = SubResource("Resource_020fs")
 
 [node name="PeopleCardElement6" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(42, 157)
-rotationSeed = 4920.0
+card = SubResource("Resource_oah3d")
 
 [node name="PeopleCardElement7" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(-83, -19)
-rotationSeed = 1220.0
+card = SubResource("Resource_qgpxw")
 
 [node name="PeopleCardElement8" parent="." instance=ExtResource("5_020fs")]
 position = Vector2(-39, -20)
-rotationSeed = 9760.0
+card = SubResource("Resource_k7p1x")
