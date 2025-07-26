@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7s3ytvmfy7m0"]
+[gd_scene load_steps=9 format=3 uid="uid://b7s3ytvmfy7m0"]
 
+[ext_resource type="Script" uid="uid://e4eqvctks3tj" path="res://ui_elements/UiElements.cs" id="1_1xkko"]
 [ext_resource type="PackedScene" uid="uid://q1coc23s5d6f" path="res://ui_elements/card_element.tscn" id="1_annl5"]
-[ext_resource type="PackedScene" uid="uid://cb8usqijv0eu1" path="res://ui_elements/icon_button_element.tscn" id="2_70nn0"]
 [ext_resource type="PackedScene" uid="uid://dm3txtsrwmapt" path="res://ui_elements/dark_emisary_card_element.tscn" id="3_ndxy5"]
 [ext_resource type="PackedScene" uid="uid://tw38xd6swqcj" path="res://ui_elements/player_card_element.tscn" id="4_abews"]
 [ext_resource type="PackedScene" uid="uid://dx73g5e8b7ac3" path="res://ui_elements/action_card_element.tscn" id="5_020fs"]
@@ -13,46 +13,7 @@ script = ExtResource("6_70nn0")
 cardType = 0
 cardSuit = 0
 value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_7fd1g"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 0
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_tiyoh"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 0
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_ne6n7"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 0
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_fqxkj"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 0
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_f07ri"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 0
-cardSuit = 0
-value = 2
+rules = ""
 metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
 
 [sub_resource type="Resource" id="Resource_ndxy5"]
@@ -60,104 +21,60 @@ resource_local_to_scene = true
 script = ExtResource("6_70nn0")
 cardType = 2
 cardSuit = 0
-value = 2
+value = 0
+rules = ""
 metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
 
-[sub_resource type="Resource" id="Resource_abews"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 2
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_020fs"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 2
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_oah3d"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 2
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_qgpxw"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 1
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[sub_resource type="Resource" id="Resource_k7p1x"]
-resource_local_to_scene = true
-script = ExtResource("6_70nn0")
-cardType = 1
-cardSuit = 0
-value = 2
-metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
-
-[node name="UIElements" type="Node2D"]
-
-[node name="CardElement" parent="." instance=ExtResource("1_annl5")]
-position = Vector2(119, 20)
-rotation = 0.150947
-card = SubResource("Resource_70nn0")
-
-[node name="CardElement2" parent="." instance=ExtResource("1_annl5")]
-position = Vector2(96, 65)
-rotation = 0.150947
-card = SubResource("Resource_7fd1g")
-
-[node name="CardElement3" parent="." instance=ExtResource("1_annl5")]
-position = Vector2(141, 65)
-rotation = 0.150947
-card = SubResource("Resource_tiyoh")
-
-[node name="CardElement4" parent="." instance=ExtResource("1_annl5")]
-position = Vector2(119, 106)
-rotation = 0.150947
-card = SubResource("Resource_ne6n7")
-
-[node name="CardElement5" parent="." instance=ExtResource("2_70nn0")]
-position = Vector2(62, -24)
-rotation = 0.150947
-scale = Vector2(0.647259, 0.600743)
+[node name="UIElements" type="Node2D" node_paths=PackedStringArray("roomSlotElements", "basicActionHandCardSlots", "specialActionHandCardSlots")]
+script = ExtResource("1_1xkko")
+roomSlotElements = [NodePath("PeopleCard1"), NodePath("PeopleCard2"), NodePath("PeopleCard3"), NodePath("PeopleCard4")]
+basicActionHandCardSlots = [NodePath("BasicActionCard1"), NodePath("BasicActionCard2"), NodePath("BasicActionCard3"), NodePath("BasicActionCard4")]
+specialActionHandCardSlots = [NodePath("SpecialActionCard1"), NodePath("SpecialActionCard2")]
 
 [node name="PeopleCardElement2" parent="." instance=ExtResource("3_ndxy5")]
 position = Vector2(-40, 40)
-card = SubResource("Resource_fqxkj")
+card = SubResource("Resource_70nn0")
 
 [node name="PeopleCardElement" parent="." instance=ExtResource("4_abews")]
 position = Vector2(-42, 99)
-card = SubResource("Resource_f07ri")
+card = SubResource("Resource_70nn0")
 
-[node name="PeopleCardElement3" parent="." instance=ExtResource("5_020fs")]
-position = Vector2(-81, 157)
+[node name="PeopleCard1" parent="." instance=ExtResource("1_annl5")]
+position = Vector2(86, 117)
+card = SubResource("Resource_70nn0")
+
+[node name="PeopleCard2" parent="." instance=ExtResource("1_annl5")]
+position = Vector2(54, 63)
+card = SubResource("Resource_70nn0")
+
+[node name="PeopleCard3" parent="." instance=ExtResource("1_annl5")]
+position = Vector2(115, 65)
+card = SubResource("Resource_70nn0")
+
+[node name="PeopleCard4" parent="." instance=ExtResource("1_annl5")]
+position = Vector2(87, 14)
+card = SubResource("Resource_70nn0")
+
+[node name="BasicActionCard1" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-71, 138)
 card = SubResource("Resource_ndxy5")
 
-[node name="PeopleCardElement4" parent="." instance=ExtResource("5_020fs")]
-position = Vector2(-40, 157)
-card = SubResource("Resource_abews")
+[node name="BasicActionCard2" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-42, 137)
+card = SubResource("Resource_ndxy5")
 
-[node name="PeopleCardElement5" parent="." instance=ExtResource("5_020fs")]
-position = Vector2(1, 157)
-card = SubResource("Resource_020fs")
+[node name="BasicActionCard3" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-12, 137)
+card = SubResource("Resource_ndxy5")
 
-[node name="PeopleCardElement6" parent="." instance=ExtResource("5_020fs")]
-position = Vector2(42, 157)
-card = SubResource("Resource_oah3d")
+[node name="BasicActionCard4" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(14, 137)
+card = SubResource("Resource_ndxy5")
 
-[node name="PeopleCardElement7" parent="." instance=ExtResource("5_020fs")]
-position = Vector2(-83, -19)
-card = SubResource("Resource_qgpxw")
+[node name="SpecialActionCard1" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-71, 8)
+card = SubResource("Resource_ndxy5")
 
-[node name="PeopleCardElement8" parent="." instance=ExtResource("5_020fs")]
-position = Vector2(-39, -20)
-card = SubResource("Resource_k7p1x")
+[node name="SpecialActionCard2" parent="." instance=ExtResource("5_020fs")]
+position = Vector2(-42, 7)
+card = SubResource("Resource_ndxy5")

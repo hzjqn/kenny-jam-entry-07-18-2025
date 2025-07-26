@@ -4,7 +4,6 @@ using System;
 
 public enum SpecialActionTypes
 {
-    Flip,
     Convert,
 }
 
@@ -18,44 +17,115 @@ public enum BasicActionTypes
 
 public partial class CardManager : Node
 {
-    public static Card selectedCard;
-    public static Card hoveredCard;
-    public static int CardsPorPalo = 3;
-    public static Array<Card> MazoPersonajes = new Array<Card>();
-    public static Array<Card> SpecialActionsDeck = [];
-    public static Array<Card> BasicActionsDeck = [];
-    public static Array<Card> PeopleDeck = [];
+    [Signal]
+    public delegate void CardsUpdatedEventHandler();
+    [Signal]
+    public delegate void GameBoardStartedEventHandler();
 
-    public static void StartBoard()
+    GameManager gm;
+    public int daysGoverned = 0;
+    public Card selectedCard;
+    public Card hoveredCard;
+    public int CardsPorPalo = 3;
+    public Array<Card> MazoPersonajes = new Array<Card>();
+    public Array<Card> SpecialActionsDeck = [];
+    public Array<Card> BasicActionsDeck = [];
+    public Array<Card> PeopleDeck = [];
+    [Export]
+    public Array<Card> RoomSlots = [
+        null,
+        null,
+        null,
+        null,
+    ];
+    [Export]
+    public Array<Card> BasicActionsHand = [
+        null,
+        null,
+        null,
+        null,
+    ];
+    [Export]
+    public Array<Card> SpecialActionsHand = [
+        null,
+        null,
+    ];
+
+
+    public override void _Ready()
     {
+        base._Ready();
+        gm = GetNode<GameManager>("/root/GameManager");
+    }
+
+    public void StartBoard(Run run)
+    {
+        run.Update += () =>
+        {
+            EmitSignal(SignalName.CardsUpdated);
+        };
         CardsPorPalo = 3;
         MazoPersonajes = new Array<Card>();
-        SpecialActionsDeck = [];
-        BasicActionsDeck = [];
-        PeopleDeck = [];
+        SpecialActionsDeck = GenerateSpecialActionsDeck();
+        BasicActionsDeck = GenerateBasicActionsDeck();
+        PeopleDeck = GeneratePeopleDeck();
+        gm.currentRun.Popularidad = 0;
 
-        foreach (CardSuits palo in Enum.GetValues<CardSuits>())
-        {
-            GameManager.currentRun.Popularidades[palo] = 0;
-        }
-        BuildMazoPersonajes();
-        BuildSpecialActionsDeck();
+        Deal();
+        EmitSignal(SignalName.GameBoardStarted);
     }
-    public static void BuildMazoPersonajes()
+
+    public void Deal()
     {
-        for (int valor = 0; valor < CardsPorPalo; valor++)
+        SpecialActionsDeck.Shuffle();
+
+        int cardSlotIndex = 0;
+        foreach (Card card in RoomSlots)
         {
-            foreach (CardSuits palo in Enum.GetValues<CardSuits>())
+            Card addedCard = PeopleDeck[0];
+            PeopleDeck.Remove(addedCard);
+            RoomSlots[cardSlotIndex] = addedCard;
+            cardSlotIndex++;
+        }
+
+        int basicCardSlotIndex = 0;
+        foreach (Card card in BasicActionsHand)
+        {
+            Card addedCard = BasicActionsDeck[basicCardSlotIndex];
+            BasicActionsHand[basicCardSlotIndex] = addedCard;
+            basicCardSlotIndex++;
+        }
+
+        int specialCardSlotIndex = 0;
+        SpecialActionsDeck.Shuffle();
+        foreach (Card card in SpecialActionsHand)
+        {
+            Card addedCard = SpecialActionsDeck[specialCardSlotIndex];
+            SpecialActionsHand[specialCardSlotIndex] = addedCard;
+            specialCardSlotIndex++;
+        }
+
+        EmitSignal(SignalName.CardsUpdated);
+    }
+
+    public Array<Card> GeneratePeopleDeck()
+    {
+        Array<Card> deck = [];
+        for (int value = 0; value < CardsPorPalo; value++)
+        {
+            foreach (CardSuits suit in Enum.GetValues<CardSuits>())
             {
-                if (valor == 1 && palo == CardSuits.Militia) continue;
-                MazoPersonajes.Add(new Card(valor, palo));
+                deck.Add(new Card(value, suit));
             }
         }
+
+        return deck;
     }
 
-    public static void BuildBasicActionsDeck()
+    public Array<Card> GenerateBasicActionsDeck()
     {
-        BasicActionsDeck = [
+
+        return [
             new Card((int)BasicActionTypes.Ignore, 0, CardType.BasicAction, "Ignore a person."),
             new Card((int)BasicActionTypes.Tax, 0, CardType.BasicAction, "Tax a person."),
             new Card((int)BasicActionTypes.Bribe, 0, CardType.BasicAction, "Bribe a person."),
@@ -63,20 +133,23 @@ public partial class CardManager : Node
         ];
     }
 
-    public static void BuildSpecialActionsDeck()
+    public Array<Card> GenerateSpecialActionsDeck()
     {
+        Array<Card> deck = [];
         foreach (CardSuits palo in Enum.GetValues<CardSuits>())
         {
-            SpecialActionsDeck.Add(new Card((int)SpecialActionTypes.Convert, palo, CardType.SpecialAction, "Convert target card to " + UiManager.GetCardSuitName(palo)));
+            deck.Add(new Card((int)SpecialActionTypes.Convert, palo, CardType.SpecialAction, "Convert target card to " + UiManager.GetCardSuitName(palo)));
         }
-        SpecialActionsDeck.Add(new Card((int)SpecialActionTypes.Flip, 0, CardType.SpecialAction, "When played, 50% chance to double the value of target card or halve it..."));
+
+        return deck;
     }
 
-    public static void useSelectedCardOnHoveredCard()
+    public void useSelectedCardOnHoveredCard()
     {
+        GD.Print("useSelectedCardOnHoveredCard");
         if (selectedCard.cardType == CardType.BasicAction)
         {
-            GameManager.currentRun.UseAction(selectedCard, hoveredCard);
+            gm.currentRun.UseAction(selectedCard, hoveredCard);
         }
     }
 }

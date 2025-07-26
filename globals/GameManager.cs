@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 public enum CardType
 {
@@ -18,18 +19,22 @@ public enum CardSuits
 
 public partial class GameManager : Node
 {
-    public static bool isOnTutorial = true;
-    public static Run currentRun;
+    [Signal]
+    public delegate void RunStartedEventHandler();
+    public bool isOnTutorial = true;
+    public Run currentRun;
 
     public override void _Ready()
     {
         base._Ready();
-        StartGame();
     }
 
-    public static void StartGame()
+    public void StartGame()
     {
-        currentRun = new Run();
-        CardManager.StartBoard();
+        Run newRun = new Run();
+        currentRun = newRun;
+        GetTree().Root.AddChild(newRun);
+        GetNode<CardManager>("/root/CardManager").StartBoard(currentRun);
+        EmitSignal(SignalName.RunStarted);
     }
 }

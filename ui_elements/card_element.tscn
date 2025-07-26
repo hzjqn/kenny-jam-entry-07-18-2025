@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://q1coc23s5d6f"]
+[gd_scene load_steps=15 format=3 uid="uid://q1coc23s5d6f"]
 
 [ext_resource type="Texture2D" uid="uid://p44oqsxortok" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card.png" id="1_8dg7b"]
 [ext_resource type="Script" uid="uid://d2gaimovm1rmv" path="res://ui_elements/PeopleCardElement.cs" id="1_m1ql1"]
@@ -14,6 +14,7 @@ script = ExtResource("2_b6nid")
 cardType = 0
 cardSuit = 0
 value = 2
+rules = ""
 metadata/_custom_type_script = "uid://dbqbnxhj6bhhs"
 
 [sub_resource type="Animation" id="Animation_b6nid"]
@@ -45,6 +46,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qudyb"]
+resource_name = "disappear"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_m1ql1"]
@@ -107,20 +136,24 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_b6nid"),
 &"appear": SubResource("Animation_ca84f"),
+&"disappear": SubResource("Animation_qudyb"),
 &"hover": SubResource("Animation_m1ql1"),
 &"hover_out": SubResource("Animation_axnln")
 }
 
-[node name="PeopleCardElement" type="Node2D" node_paths=PackedStringArray("body", "shadow", "animationPlayer")]
+[node name="PeopleCardElement" type="Node2D" node_paths=PackedStringArray("body", "shadow", "valueLabel", "suitIconSprite", "suitPersonSprite", "animationPlayer")]
 script = ExtResource("1_m1ql1")
 card = SubResource("Resource_ca84f")
 body = NodePath("Body")
 shadow = NodePath("Shadow")
+valueLabel = NodePath("Body/Person/Sprite2D3/Label")
+suitIconSprite = NodePath("Body/Person/Sprite2D3/Sprite2D4")
+suitPersonSprite = NodePath("Body/Person/Sprite2D")
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Shadow" type="Node2D" parent="."]
 rotation = 0.0416461
-scale = Vector2(1.1, 1.1)
+scale = Vector2(1e-05, 1e-05)
 
 [node name="Person" type="Sprite2D" parent="Shadow"]
 modulate = Color(0, 0, 0, 0.458824)
@@ -129,23 +162,9 @@ texture_filter = 1
 position = Vector2(0, 5)
 texture = ExtResource("1_8dg7b")
 
-[node name="Action" type="Sprite2D" parent="Shadow"]
-modulate = Color(0, 0, 0, 0.458824)
-self_modulate = Color(0.77084, 0.770839, 0.770839, 1)
-texture_filter = 1
-position = Vector2(0, 5)
-texture = ExtResource("1_8dg7b")
-
-[node name="Ability" type="Sprite2D" parent="Shadow"]
-modulate = Color(0, 0, 0, 0.458824)
-self_modulate = Color(0.77084, 0.770839, 0.770839, 1)
-texture_filter = 1
-position = Vector2(0, 5)
-texture = ExtResource("1_8dg7b")
-
 [node name="Body" type="Node2D" parent="."]
 rotation = 0.0416461
-scale = Vector2(1.1, 1.1)
+scale = Vector2(1e-05, 1e-05)
 
 [node name="Person" type="Sprite2D" parent="Body"]
 self_modulate = Color(0.77084, 0.770839, 0.770839, 1)
@@ -194,91 +213,11 @@ theme = ExtResource("4_ca84f")
 text = "99"
 metadata/_edit_use_anchors_ = true
 
-[node name="Action" type="Sprite2D" parent="Body"]
-self_modulate = Color(0.77084, 0.770839, 0.770839, 1)
-texture_filter = 1
-texture = ExtResource("1_8dg7b")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Body/Action"]
-modulate = Color(0, 0, 0, 0.286275)
-texture_filter = 1
-position = Vector2(0, 14)
-scale = Vector2(1, 0.25)
-texture = ExtResource("3_m1ql1")
-
-[node name="Sprite2D" type="Sprite2D" parent="Body/Action"]
-texture_filter = 1
-position = Vector2(0, 7)
-texture = ExtResource("3_m1ql1")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Body/Action"]
-modulate = Color(1, 0.930604, 0.861057, 1)
-position = Vector2(16, -1)
-rotation = 2.92753
-texture = ExtResource("3_8dg7b")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Body/Action/Sprite2D3"]
-position = Vector2(2.2726, 14.6913)
-rotation = -2.65957
-texture = ExtResource("5_8dg7b")
-
-[node name="Label" type="Label" parent="Body/Action/Sprite2D3"]
-modulate = Color(0.247059, 0.14902, 0.192157, 1)
-texture_filter = 1
-offset_left = 28.0724
-offset_top = 25.0787
-offset_right = 68.0724
-offset_bottom = 48.0787
-rotation = -3.14159
-theme = ExtResource("4_ca84f")
-text = "99"
-metadata/_edit_use_anchors_ = true
-
-[node name="Ability" type="Sprite2D" parent="Body"]
-self_modulate = Color(0.77084, 0.770839, 0.770839, 1)
-texture_filter = 1
-texture = ExtResource("1_8dg7b")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Body/Ability"]
-modulate = Color(0, 0, 0, 0.286275)
-texture_filter = 1
-position = Vector2(0, 14)
-scale = Vector2(1, 0.25)
-texture = ExtResource("3_m1ql1")
-
-[node name="Sprite2D" type="Sprite2D" parent="Body/Ability"]
-texture_filter = 1
-position = Vector2(0, 7)
-texture = ExtResource("3_m1ql1")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Body/Ability"]
-modulate = Color(1, 0.930604, 0.861057, 1)
-position = Vector2(16, -1)
-rotation = 2.92753
-texture = ExtResource("3_8dg7b")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Body/Ability/Sprite2D3"]
-position = Vector2(2.2726, 14.6913)
-rotation = -2.65957
-texture = ExtResource("5_8dg7b")
-
-[node name="Label" type="Label" parent="Body/Ability/Sprite2D3"]
-modulate = Color(0.247059, 0.14902, 0.192157, 1)
-texture_filter = 1
-offset_left = 28.0724
-offset_top = 25.0787
-offset_right = 68.0724
-offset_bottom = 48.0787
-rotation = -3.14159
-theme = ExtResource("4_ca84f")
-text = "99"
-metadata/_edit_use_anchors_ = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ca84f")
 }
-autoplay = "hover"
+autoplay = "RESET"
 
 [node name="Control" type="TextureButton" parent="."]
 offset_left = -19.0

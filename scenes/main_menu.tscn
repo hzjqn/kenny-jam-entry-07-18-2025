@@ -2,6 +2,38 @@
 
 [ext_resource type="Script" uid="uid://3s3n6y1kur4" path="res://scenes/MainMenu.cs" id="1_l6cm7"]
 
-[node name="Node2D" type="Node2D"]
-position = Vector2(-69, -99)
+[node name="Node2D" type="Control" node_paths=PackedStringArray("startGameButton", "exitGameButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_l6cm7")
+startGameButton = NodePath("BoxContainer/StartGameButton")
+exitGameButton = NodePath("BoxContainer/ExitGameButton")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -20.0
+offset_right = 48.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="StartGameButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Start Game"
+flat = true
+
+[node name="ExitGameButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+flat = true

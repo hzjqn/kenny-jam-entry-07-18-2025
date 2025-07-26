@@ -3,10 +3,18 @@ using System;
 
 public partial class Tutorial : Control
 {
+    GameManager gm;
+
+    public override void _Ready()
+    {
+        gm = GetNode<GameManager>("/root/GameManager");
+        base._Ready();
+    }
+
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (GameManager.isOnTutorial == false)
+        if (gm.isOnTutorial == false)
         {
             QueueFree();
         }
@@ -18,9 +26,9 @@ public partial class Tutorial : Control
         if (@event is InputEventKey eventAction)
         {
 
-            if (eventAction.IsActionPressed("ui_cancel"))
+            if (eventAction.IsActionPressed("ui_skip"))
             {
-                GameManager.isOnTutorial = false;
+                gm.isOnTutorial = false;
             }
         }
     }

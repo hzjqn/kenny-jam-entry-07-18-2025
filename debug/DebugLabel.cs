@@ -3,9 +3,21 @@ using System;
 
 public partial class DebugLabel : RichTextLabel
 {
+    GameManager gm;
+    CardManager cm;
+
+
+    public override void _Ready()
+    {
+        base._Ready();
+        gm = GetNode<GameManager>("/root/GameManager");
+        cm = GetNode<CardManager>("/root/CardManager");
+
+    }
+
     public override void _Process(double delta)
     {
-        Run run = GameManager.currentRun;
+        Run run = gm.currentRun;
 
         if (run == null) return;
 
@@ -18,9 +30,15 @@ public partial class DebugLabel : RichTextLabel
 
 
                 Selected Card: 
-                - {CardManager.selectedCard?.value} / {CardManager.selectedCard?.cardSuit} / {CardManager.selectedCard?.cardType} 
+                - {cm.selectedCard?.value} / {cm.selectedCard?.cardSuit} / {cm.selectedCard?.cardType} 
                 Hovered Card:
-                - {CardManager.hoveredCard?.value} / {CardManager.hoveredCard?.cardSuit} / {CardManager.hoveredCard?.cardType} 
+                - {cm.hoveredCard?.value} / {cm.hoveredCard?.cardSuit} / {cm.hoveredCard?.cardType} 
+                - Card slots
+                [{cm.RoomSlots.ToString()}] 
+                - hand slots
+                [{cm.BasicActionsHand.ToString()}] 
+                - sp slots
+                [{cm.SpecialActionsHand.ToString()}] 
             ";
     }
 

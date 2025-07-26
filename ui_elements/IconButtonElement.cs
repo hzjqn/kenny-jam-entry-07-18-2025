@@ -7,7 +7,7 @@ public partial class IconButtonElement : Node2D
     public AnimationPlayer animationPlayer;
 
     float rotationSeed = 0.0f;
-    
+
 
 
     public override void _Ready()
@@ -23,13 +23,11 @@ public partial class IconButtonElement : Node2D
 
     public void AniamteHover()
     {
-        GD.Print("Hover");
         animationPlayer.Play("hover");
     }
 
     public void AniamteHoverOut()
     {
-        GD.Print("Hover out");
         animationPlayer.Play("hover_out");
     }
 }

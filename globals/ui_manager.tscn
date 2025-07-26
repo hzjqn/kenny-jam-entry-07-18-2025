@@ -1,6 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://77fum753nyt4"]
+[gd_scene load_steps=17 format=3 uid="uid://77fum753nyt4"]
 
 [ext_resource type="Script" uid="uid://bwh8741q3vx4m" path="res://globals/UiManager.cs" id="1_27gjp"]
+[ext_resource type="Texture2D" uid="uid://bht2ird3i8g8c" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0106.png" id="2_2a221"]
+[ext_resource type="Texture2D" uid="uid://cs82vtrhxmpxx" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0097.png" id="2_dwmtb"]
+[ext_resource type="Texture2D" uid="uid://boa5mw32vsryw" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0130.png" id="4_5yix4"]
+[ext_resource type="Texture2D" uid="uid://dlwxpq5cvmo6d" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0101.png" id="5_80nxt"]
+[ext_resource type="Texture2D" uid="uid://d4e0tcgjn5ryd" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0119.png" id="6_7dauu"]
+[ext_resource type="Texture2D" uid="uid://ftl4w16j7b6f" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0084.png" id="7_7dauu"]
+[ext_resource type="Texture2D" uid="uid://btgvh8gjdmjtc" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0086.png" id="8_6su52"]
+[ext_resource type="Texture2D" uid="uid://c6ynxjxq0i0x7" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0109.png" id="9_dxawo"]
+[ext_resource type="Texture2D" uid="uid://bmfn02fberoma" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/card_flipdouble.png" id="10_a44wq"]
+[ext_resource type="Texture2D" uid="uid://c5u8qd50jvrip" path="res://assets/kenney_board-game-icons/Vector/Icons/skull.svg" id="11_t3pqb"]
+[ext_resource type="Texture2D" uid="uid://6pgj0lewd0kw" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/crown_b.png" id="12_1qila"]
+[ext_resource type="Texture2D" uid="uid://b0wryc1e803rm" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/sword.png" id="13_0qexo"]
+[ext_resource type="Texture2D" uid="uid://cavroodnu2csn" path="res://assets/kenney_board-game-icons/PNG/Double (128px)/pouch_remove.png" id="14_ie7td"]
+[ext_resource type="Texture2D" uid="uid://bpsay2707bin8" path="res://assets/kenney_board-game-icons/PNG/Default (64px)/hand_token_open.png" id="15_pqnww"]
+[ext_resource type="Texture2D" uid="uid://j5uc3xkb6kjm" path="res://assets/kenney_board-game-icons/PNG/Double (128px)/character_remove.png" id="16_1vds1"]
 
 [node name="UIManager" type="Node"]
 script = ExtResource("1_27gjp")
+militiaSuitColor = Color(0.341176, 0.541176, 1, 1)
+clergySuitColor = Color(0.666667, 0, 0.721569, 1)
+opponetSuitColor = Color(0.6, 0.0941176, 0.14902, 1)
+merchantSuitColor = Color(0.266667, 0.568627, 0, 1)
+militiaIconTexture = ExtResource("2_2a221")
+militiaPersonTexture = ExtResource("2_dwmtb")
+clerigyIconTexture = ExtResource("4_5yix4")
+merchantIconTexture = ExtResource("5_80nxt")
+opponentIconTexture = ExtResource("6_7dauu")
+clerigyPersonTexture = ExtResource("7_7dauu")
+merchantPersonTexture = ExtResource("8_6su52")
+opponentPersonTexture = ExtResource("9_dxawo")
+convertIconTexture = ExtResource("10_a44wq")
+speicalIconTexture = ExtResource("11_t3pqb")
+basicIcontexture = ExtResource("12_1qila")
+threatIconTexture = ExtResource("13_0qexo")
+bribeIconTexture = ExtResource("14_ie7td")
+taxIconTexture = ExtResource("15_pqnww")
+ignoreIconTexture = ExtResource("16_1vds1")

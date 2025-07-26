@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ciejssis6a7x5"]
+[gd_scene load_steps=16 format=3 uid="uid://ciejssis6a7x5"]
 
 [ext_resource type="PackedScene" uid="uid://cr81rfv17nnkc" path="res://ui_elements/transition_particles.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://dgc5xweupw2rt" path="res://ui_elements/background.tscn" id="1_2c62f"]
@@ -9,11 +9,12 @@
 [ext_resource type="Script" uid="uid://cb8gfv7a2s82w" path="res://Tutorial.cs" id="5_66tet"]
 [ext_resource type="PackedScene" uid="uid://s8odqjymkr0w" path="res://ui_elements/message_element.tscn" id="6_hq1ik"]
 [ext_resource type="Script" uid="uid://dgplc31kla1yl" path="res://debug/DebugLabel.cs" id="7_nfk4m"]
+[ext_resource type="PackedScene" uid="uid://clb2vl253j7oh" path="res://scenes/main_menu.tscn" id="9_wr18j"]
 
-[sub_resource type="Animation" id="Animation_b6nid"]
+[sub_resource type="Animation" id="Animation_w30ff"]
 length = 0.001
 
-[sub_resource type="Animation" id="Animation_ca84f"]
+[sub_resource type="Animation" id="Animation_xy6fp"]
 resource_name = "appear"
 length = 0.45
 tracks/0/type = "value"
@@ -41,7 +42,7 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(1.3, 1.3), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_m1ql1"]
+[sub_resource type="Animation" id="Animation_uws2o"]
 resource_name = "hover"
 length = 0.45
 tracks/0/type = "value"
@@ -69,7 +70,7 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.1, 1.1)]
 }
 
-[sub_resource type="Animation" id="Animation_axnln"]
+[sub_resource type="Animation" id="Animation_iylel"]
 resource_name = "hover_out"
 length = 0.45
 tracks/0/type = "value"
@@ -97,12 +98,12 @@ tracks/1/keys = {
 "values": [Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ca84f"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yj5sn"]
 _data = {
-&"RESET": SubResource("Animation_b6nid"),
-&"appear": SubResource("Animation_ca84f"),
-&"hover": SubResource("Animation_m1ql1"),
-&"hover_out": SubResource("Animation_axnln")
+&"RESET": SubResource("Animation_w30ff"),
+&"appear": SubResource("Animation_xy6fp"),
+&"hover": SubResource("Animation_uws2o"),
+&"hover_out": SubResource("Animation_iylel")
 }
 
 [node name="MainScene" type="Control"]
@@ -135,7 +136,6 @@ scale = Vector2(3.78095, 3.84848)
 [node name="CanvasLayer4" type="CanvasLayer" parent="."]
 
 [node name="Deselect" type="TextureButton" parent="CanvasLayer4"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -176,7 +176,7 @@ nextMessage = NodePath("../IntroMessage2")
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage1/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="IntroMessage2" parent="CanvasLayer4/Tutorial" node_paths=PackedStringArray("nextMessage") instance=ExtResource("6_hq1ik")]
@@ -185,7 +185,7 @@ nextMessage = NodePath("../IntroMessage3")
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage2/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage2" index="2"]
@@ -197,7 +197,7 @@ nextMessage = NodePath("../IntroMessage4")
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage3/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage3" index="2"]
@@ -210,7 +210,7 @@ nextMessage = NodePath("../IntroMessage5")
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage4/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage4" index="2"]
@@ -222,7 +222,7 @@ nextMessage = NodePath("../IntroMessage6")
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage5/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage5" index="2"]
@@ -234,7 +234,7 @@ nextMessage = NodePath("../IntroMessage7")
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage6/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage6" index="2"]
@@ -248,7 +248,7 @@ nextMessage = NodePath("../IntroMessage8")
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage7/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage7" index="2"]
@@ -260,7 +260,7 @@ nextMessage = NodePath("../IntroMessage9")
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage8/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage8" index="2"]
@@ -272,13 +272,33 @@ isLastMessage = true
 
 [node name="AnimationPlayer" parent="CanvasLayer4/Tutorial/IntroMessage9/IconButtonElement" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_ca84f")
+&"": SubResource("AnimationLibrary_yj5sn")
 }
 
 [node name="RichTextLabel" parent="CanvasLayer4/Tutorial/IntroMessage9" index="2"]
 text = "And you'll rule forever..."
 
+[node name="Label" type="Label" parent="CanvasLayer4/Tutorial"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -107.0
+offset_right = 23.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press [Space] to skip..."
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="MenuLayer" instance=ExtResource("9_wr18j")]
+
 [node name="Debug" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Label" type="RichTextLabel" parent="Debug"]
 anchors_preset = 15

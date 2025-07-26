@@ -1,14 +1,26 @@
 using System;
+using Godot;
 using Godot.Collections;
 
-public class Run
+public partial class Run : Node2D
 {
-    public Dictionary<CardSuits, int> Popularidades = new Dictionary<CardSuits, int>();
+    [Signal]
+    public delegate void UpdateEventHandler();
+    CardManager cm;
+    GameManager gm;
     public double Monedas = 20;
     public int Fuerza = 20;
     public int Popularidad = 0;
     public int Gasto = 1;
-    
+
+    public override void _Ready()
+    {
+        base._Ready();
+        cm = GetNode<CardManager>("/root/CardManager");
+        gm = GetNode<GameManager>("/root/GameManager");
+    }
+
+
     public void PagarDiezmo()
     {
         Monedas *= 0.9;
@@ -26,13 +38,13 @@ public class Run
 
     public void Ignorar(Card target)
     {
-        Popularidades[target.cardSuit] -= 1;
+        Popularidad -= 1;
     }
 
-    public void Pagar(Card Card)
+    public void Pagar(Card target)
     {
-        CardSuits palo = Card.cardSuit;
-        int valor = Card.value;
+        CardSuits palo = target.cardSuit;
+        int valor = target.value;
 
         if (palo == CardSuits.Clergy)
         {
@@ -78,10 +90,10 @@ public class Run
         }
     }
 
-    public void Violencia(Card Card)
+    public void Violencia(Card target)
     {
-        CardSuits palo = Card.cardSuit;
-        int valor = Card.value;
+        CardSuits palo = target.cardSuit;
+        int valor = target.value;
 
         if (palo == CardSuits.Clergy || palo == CardSuits.Militia)
         {
@@ -99,20 +111,13 @@ public class Run
             Popularidad -= 2;
             Gasto++;
         }
-    }
 
-    public int CalcularPopularidadTotal()
-    {
-        int total = 0;
-        foreach (var val in Popularidades.Values)
-        {
-            total += val;
-        }
-        return total;
+
     }
 
     public void UseAction(Card card, Card target)
     {
+        GD.Print(card, target);
         switch (card.cardType)
         {
             case CardType.BasicAction:
@@ -127,23 +132,27 @@ public class Run
 
     public void UseSpecialAction(Card card, Card target)
     {
-         switch (card.value)
+        switch (card.value)
         {
-            case (int)SpecialActionTypes.Flip:
-                FlipCard(target);
-                break;
             case (int)SpecialActionTypes.Convert:
                 ConvertCard(target, card.cardSuit);
                 break;
             default:
                 break;
         }
-    }
 
-    public static void FlipCard(Card target)
-    {
-        Random rnd = new Random();
-        target.value = rnd.Next(2) == 0 ? target.value * 2 : target.value;
+
+        if (cm.SpecialActionsHand.Contains(card))
+        {
+            int index = cm.SpecialActionsHand.IndexOf(card);
+            if (cm.selectedCard == card)
+            {
+                cm.selectedCard = null;
+            }
+            cm.SpecialActionsHand[index] = null;
+        }
+
+        EmitSignal(SignalName.Update);
     }
 
     public static void ConvertCard(Card target, CardSuits newSuit)
@@ -177,14 +186,23 @@ public class Run
                     break;
                 }
         }
-    }
 
-    public void MainLoop()
-    {
-        while (true)
+        if (cm.BasicActionsHand.Contains(card))
         {
-            // room(this); // Placeholder for future interaction logic
-            break; // Prevent infinite loop for now
+            int index = cm.BasicActionsHand.IndexOf(card);
+            if (cm.selectedCard == card)
+            {
+                cm.selectedCard = null;
+            }
+            cm.BasicActionsHand[index] = null;
         }
+
+        if (cm.RoomSlots.Contains(target))
+        {
+            int index = cm.RoomSlots.IndexOf(target);
+            cm.RoomSlots[index] = null;
+        }
+
+        EmitSignal(SignalName.Update);
     }
 }
